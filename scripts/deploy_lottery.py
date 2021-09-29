@@ -14,7 +14,7 @@ def deploy_lottery():
         {"from": account},
         publish_source=config["networks"][network.show_active()].get("verify", False),
     )
-    print("Deployed Lottery")
+    print("Deployed lottery!")
     return lottery
 
 
@@ -29,7 +29,7 @@ def start_lottery():
 def enter_lottery():
     account = get_account()
     lottery = Lottery[-1]
-    value = lottery.getEntranceFee() + 1000000
+    value = lottery.getEntranceFee() + 100000000
     tx = lottery.enter({"from": account, "value": value})
     tx.wait(1)
     print("You entered the lottery!")
@@ -45,7 +45,7 @@ def end_lottery():
     ending_transaction = lottery.endLottery({"from": account})
     ending_transaction.wait(1)
     time.sleep(60)
-    print(f"{lottery.recentWinner()} is the new winner!!")
+    print(f"{lottery.recentWinner()} is the new winner!")
 
 
 def main():
