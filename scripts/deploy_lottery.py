@@ -29,7 +29,7 @@ def start_lottery():
 def enter_lottery():
     account = get_account()
     lottery = Lottery[-1]
-    value = lottery.getEntranceFee() + 100000000
+    value = lottery.getEntranceFee() + 1000000
     tx = lottery.enter({"from": account, "value": value})
     tx.wait(1)
     print("You entered the lottery!")
@@ -51,4 +51,5 @@ def end_lottery():
 def main():
     deploy_lottery()
     start_lottery()
+    enter_lottery()
     end_lottery()
