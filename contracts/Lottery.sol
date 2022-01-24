@@ -36,7 +36,7 @@ contract Lottery is VRFConsumerBase, Ownable {
         ethUsdPriceFeed = AggregatorV3Interface(_priceFeedAddress);
         lottery_state = LOTTERY_STATE.CLOSED;
         fee = _fee;
-        keyhash = _keyhash;
+        keyhash = 0x2ED0FEB3E7FD2022120AA84FAB1945545A9F2FFC9076FD6156FA96EAFF4C1311;
     }
 
     function enter() public payable {
@@ -96,5 +96,12 @@ contract Lottery is VRFConsumerBase, Ownable {
         players = new address payable[](0);
         lottery_state = LOTTERY_STATE.CLOSED;
         randomness = _randomness;
+    }
+
+    function fulfillRandomness2(bytes32 requestId, uint256 randomness)
+        internal
+        override
+    {
+        randomResult = randomness;
     }
 }
